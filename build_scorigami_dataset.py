@@ -954,14 +954,20 @@ def update_readme(summary: pd.DataFrame) -> None:
 
 """
     
-    if "## Most Recent Scorigamis" in readme_content:
-        readme_content = readme_content.split("## Most Recent Scorigamis")[0]
+    before_run = ""
+    after_run = ""
     
     if "## Run" in readme_content:
         run_idx = readme_content.index("## Run")
-        readme_content = readme_content[:run_idx].rstrip() + "\n\n" + new_section + readme_content[run_idx:]
+        before_run = readme_content[:run_idx]
+        after_run = readme_content[run_idx:]
     else:
-        readme_content = readme_content.rstrip() + "\n\n" + new_section
+        before_run = readme_content
+    
+    if "## Most Recent Scorigamis" in before_run:
+        before_run = before_run.split("## Most Recent Scorigamis")[0]
+    
+    readme_content = before_run.rstrip() + "\n\n" + new_section + after_run
     
     readme_path.write_text(readme_content)
 
