@@ -944,7 +944,9 @@ def update_readme(summary: pd.DataFrame) -> None:
         )
     table_str = "\n".join(table_lines)
     
-    new_section = f"""## Most Recent Scorigamis
+    last_updated = pd.Timestamp.now().strftime("%Y-%m-%d")
+    
+    new_section = f"""## Most Recent Scorigamis (Last Updated: {last_updated})
 
 ![Master Scorigami]({master_plot_path})
 
