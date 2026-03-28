@@ -24,6 +24,7 @@ FRANCHISE_PLOTS_DIR = PLOTS_DIR / "franchises"
 VALIDATION_DIR = Path("validation")
 RAW_DIR = Path("raw/retrosheet_gamelogs")
 RHE_SUMMARY_PATH = VALIDATION_DIR / "rhe_combo_summary.csv"
+STREAMLIT_DATA_PATH = DATA_DIR / "scorigami_for_streamlit.parquet"
 
 # Retrosheet team code normalization to franchise label.
 TEAM_TO_FRANCHISE = {
@@ -910,6 +911,140 @@ def write_rhe_combo_summary(df: pd.DataFrame) -> pd.DataFrame:
     return summary
 
 
+def write_streamlit_data(df: pd.DataFrame, summary: pd.DataFrame) -> None:
+    matrix_data = []
+    
+    overall_first_appearances = (
+        df.sort_values("game_date")
+        .groupby(["runs", "hits", "errors"], as_index=False)
+        .first()[["runs", "hits", "errors", "game_date", "team", "opponent"]]
+        .rename(columns={
+            "game_date": "overall_first_date",
+            "team": "overall_first_team",
+            "opponent": "overall_first_opponent"
+        })
+    )
+    
+    overall_recent_dates = (
+        df.groupby(["runs", "hits", "errors"], as_index=False)
+        .agg(overall_recent_date=("game_date", "max"))
+    )
+    
+    team_first_appearances = (
+        df.sort_values("game_date")
+        .groupby(["franchise", "runs", "hits", "errors"], as_index=False)
+        .first()[["franchise", "runs", "hits", "errors", "game_date", "team", "opponent"]]
+        .rename(columns={
+            "game_date": "team_first_date", 
+            "team": "team_first_team", 
+            "opponent": "team_first_opponent"
+        })
+    )
+    
+    for franchise in FRANCHISE_ORDER + [None]:
+        if franchise is None:
+            subset = df
+            franchise_label = "All"
+        else:
+            subset = df[df["franchise"] == franchise]
+            franchise_label = franchise
+        
+        team_first_dates = (
+            subset.groupby(["runs", "hits", "errors"], as_index=False)
+            .agg(
+                team_first_date=("game_date", "min"),
+                team_recent_date=("game_date", "max"),
+                team_games=("game_id", "size"),
+            )
+        )
+        
+        if franchise_label == "All":
+            team_appearances = team_first_appearances
+        else:
+            team_appearances = team_first_appearances[team_first_appearances["franchise"] == franchise]
+        
+        for errors in range(8):
+            err_subset = subset[subset["errors"] == errors]
+            counts = err_subset.groupby(["runs", "hits"]).size().reset_index(name="count")
+            for _, row in counts.iterrows():
+                rhe_key = (row["runs"], row["hits"], errors)
+                team_info = team_first_dates[
+                    (team_first_dates["runs"] == rhe_key[0]) &
+                    (team_first_dates["hits"] == rhe_key[1]) &
+                    (team_first_dates["errors"] == rhe_key[2])
+                ]
+                if not team_info.empty:
+                    team_first = team_info.iloc[0]["team_first_date"]
+                    team_recent = team_info.iloc[0]["team_recent_date"]
+                else:
+                    team_first = None
+                    team_recent = None
+                
+                overall_info = overall_first_appearances[
+                    (overall_first_appearances["runs"] == rhe_key[0]) &
+                    (overall_first_appearances["hits"] == rhe_key[1]) &
+                    (overall_first_appearances["errors"] == rhe_key[2])
+                ]
+                if not overall_info.empty:
+                    overall_first = overall_info.iloc[0]["overall_first_date"]
+                    overall_first_team = overall_info.iloc[0]["overall_first_team"]
+                    overall_first_opponent = overall_info.iloc[0]["overall_first_opponent"]
+                else:
+                    overall_first = None
+                    overall_first_team = None
+                    overall_first_opponent = None
+                
+                overall_recent_info = overall_recent_dates[
+                    (overall_recent_dates["runs"] == rhe_key[0]) &
+                    (overall_recent_dates["hits"] == rhe_key[1]) &
+                    (overall_recent_dates["errors"] == rhe_key[2])
+                ]
+                if not overall_recent_info.empty:
+                    overall_recent = overall_recent_info.iloc[0]["overall_recent_date"]
+                else:
+                    overall_recent = None
+                
+                team_app_info = team_appearances[
+                    (team_appearances["runs"] == rhe_key[0]) &
+                    (team_appearances["hits"] == rhe_key[1]) &
+                    (team_appearances["errors"] == rhe_key[2])
+                ]
+                if not team_app_info.empty:
+                    team_first_appearance_date = team_app_info.iloc[0]["team_first_date"]
+                    team_first_team = team_app_info.iloc[0]["team_first_team"]
+                    team_first_opponent = team_app_info.iloc[0]["team_first_opponent"]
+                else:
+                    team_first_appearance_date = None
+                    team_first_team = None
+                    team_first_opponent = None
+                
+                matrix_data.append({
+                    "franchise": franchise_label,
+                    "errors": errors,
+                    "runs": row["runs"],
+                    "hits": row["hits"],
+                    "count": row["count"],
+                    "team_first_date": team_first,
+                    "team_recent_date": team_recent,
+                    "overall_first_date": overall_first,
+                    "overall_first_team": overall_first_team,
+                    "overall_first_opponent": overall_first_opponent,
+                    "overall_recent_date": overall_recent,
+                    "team_first_appearance_date": team_first_appearance_date,
+                    "team_first_appearance_team": team_first_team,
+                    "team_first_appearance_opponent": team_first_opponent,
+                })
+    
+    matrix_df = pd.DataFrame(matrix_data)
+    
+    date_cols = ["team_first_date", "team_recent_date", "overall_first_date", "overall_recent_date", "team_first_appearance_date"]
+    for col in date_cols:
+        matrix_df[col] = pd.to_datetime(matrix_df[col], errors="coerce").dt.strftime("%Y-%m-%d")
+    
+    matrix_df.to_parquet(STREAMLIT_DATA_PATH, index=False)
+    print(f"Streamlit data written to: {STREAMLIT_DATA_PATH}")
+
+
 def print_recent_box_scorigamis(summary: pd.DataFrame, n: int = 10) -> None:
     recent = summary.sort_values("first_appearance_date", ascending=False).head(n).copy()
     recent["first_appearance_date"] = recent["first_appearance_date"].dt.strftime("%Y-%m-%d")
@@ -981,6 +1116,7 @@ def main() -> None:
     all_team_games.to_parquet(master_path, index=False)
     run_validations(all_team_games)
     summary = write_rhe_combo_summary(all_team_games)
+    write_streamlit_data(all_team_games, summary)
     print_recent_box_scorigamis(summary, n=10)
     plot_master_scorigami(all_team_games)
     print('plotted master')
