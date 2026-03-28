@@ -1,5 +1,7 @@
 #  MLB Box Scorigami 
 
+Click here for a live version of the data: https://box-scorigami.streamlit.app/
+
 This folder contains a script that creates some fun visualizations of MLB team box-Scorigami data. Inspired by [the twitter account](https://x.com/NFL_Scorigami), I threw together this script which fetches game logs from 1925-today, keeping track of unique runs/hits/error combinations at the team level.
 
 This Github repo will update everyday (in theory) and show the latest results below:
