@@ -71,9 +71,10 @@ def get_last_updated() -> str:
     return recent_date
 
 
-def create_heatmap_matrix(df: pd.DataFrame, errors: int) -> tuple[np.ndarray, np.ndarray]:
+def create_heatmap_matrix(df: pd.DataFrame, errors: int) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     matrix = np.full((GRID_MAX + 1, GRID_MAX + 1), np.nan, dtype=float)
     log_matrix = np.full((GRID_MAX + 1, GRID_MAX + 1), np.nan, dtype=float)
+    hover_text = np.full((GRID_MAX + 1, GRID_MAX + 1), "", dtype=object)
     
     subset = df[df["errors"] == errors]
     
@@ -84,8 +85,14 @@ def create_heatmap_matrix(df: pd.DataFrame, errors: int) -> tuple[np.ndarray, np
             count = row["count"]
             matrix[r, h] = count
             log_matrix[r, h] = np.log10(count) if count > 0 else np.nan
+            hover_text[r, h] = (
+                f"Runs: {r}<br>"
+                f"Hits: {h}<br>"
+                f"Errors: {errors}<br>"
+                f"Count: {int(count)}"
+            )
     
-    return matrix, log_matrix
+    return matrix, log_matrix, hover_text
 
 
 def create_heatmaps(df: pd.DataFrame, selected_team: str) -> go.Figure:
@@ -110,10 +117,12 @@ def create_heatmaps(df: pd.DataFrame, selected_team: str) -> go.Figure:
     
     matrices = []
     log_matrices = []
+    hover_texts = []
     for err in error_values:
-        matrix, log_matrix = create_heatmap_matrix(subset, err)
+        matrix, log_matrix, hover_text = create_heatmap_matrix(subset, err)
         matrices.append(matrix)
         log_matrices.append(log_matrix)
+        hover_texts.append(hover_text)
     
     global_log_vmax = float(max(np.nanmax(m) for m in log_matrices))
     
@@ -121,7 +130,7 @@ def create_heatmaps(df: pd.DataFrame, selected_team: str) -> go.Figure:
         row = idx // n_cols + 1
         col = idx % n_cols + 1
         
-        matrix, log_matrix = create_heatmap_matrix(subset, err)
+        matrix, log_matrix, hover_text = create_heatmap_matrix(subset, err)
         
         fig.add_trace(
             go.Heatmap(
@@ -132,13 +141,8 @@ def create_heatmaps(df: pd.DataFrame, selected_team: str) -> go.Figure:
                 zmin=0,
                 zmax=global_log_vmax,
                 showscale=True,
-                customdata=matrix,
-                hovertemplate=(
-                    "Runs: %{y}<br>"
-                    "Hits: %{x}<br>"
-                    f"Errors: {err}<br>"
-                    "Count: %{{customdata:.0f}}<extra></extra>"
-                ),
+                text=hover_text,
+                hoverinfo="text",
                 xgap=1,
                 ygap=1,
                 colorbar=dict(
