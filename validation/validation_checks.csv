@@ -5,4 +5,4 @@ all_games_have_home_and_away_rows,True,"bad_sides=0, bad_side_labels=0"
 no_missing_rhe_team_fields,True,"runs=0, hits=0, errors=0, team=0, franchise=0"
 no_negative_rhe_values,True,"runs=0, hits=0, errors=0"
 team_season_game_counts_in_reasonable_range,True,outliers=0
-error1_count_greater_than_or_equal_error2_count,True,"errors=1 -> 120232, errors=2 -> 49833"
+error1_count_greater_than_or_equal_error2_count,True,"errors=1 -> 120248, errors=2 -> 49834"
