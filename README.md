@@ -6,7 +6,7 @@ This folder contains a script that creates some fun visualizations of MLB team b
 
 This Github repo will update everyday (in theory) and show the latest results below:
 
-## Most Recent Scorigamis (Last Updated: 2026-04-28)
+## Most Recent Scorigamis (Last Updated: 2026-04-29)
 
 ![Master Scorigami](plots/master_scorigami_1925_2026.png)
 

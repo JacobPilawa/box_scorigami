@@ -100,7 +100,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,102.0,ARI,2848
 2024,116.0,ARI,2964
 2025,109.0,ARI,3073
-2026,22.0,ARI,3095
+2026,23.0,ARI,3096
 1925,124.0,ATL,124
 1926,121.0,ATL,245
 1927,127.0,ATL,372
@@ -508,7 +508,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,114.0,CHC,11481
 2024,110.0,CHC,11591
 2025,103.0,CHC,11694
-2026,28.0,CHC,11722
+2026,29.0,CHC,11723
 1925,125.0,CHW,125
 1926,121.0,CHW,246
 1927,117.0,CHW,363
@@ -610,7 +610,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,115.0,CHW,11546
 2024,98.0,CHW,11644
 2025,107.0,CHW,11751
-2026,23.0,CHW,11774
+2026,24.0,CHW,11775
 1925,128.0,CIN,128
 1926,127.0,CIN,255
 1927,123.0,CIN,378
@@ -814,7 +814,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,100.0,CLE,11499
 2024,109.0,CLE,11608
 2025,107.0,CLE,11715
-2026,27.0,CLE,11742
+2026,28.0,CLE,11743
 1925,0.0,COL,0
 1926,0.0,COL,0
 1927,0.0,COL,0
@@ -916,7 +916,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,108.0,COL,3532
 2024,108.0,COL,3640
 2025,103.0,COL,3743
-2026,23.0,COL,3766
+2026,24.0,COL,3767
 1925,131.0,DET,131
 1926,133.0,DET,264
 1927,130.0,DET,394
@@ -1018,7 +1018,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,105.0,DET,11615
 2024,107.0,DET,11722
 2025,114.0,DET,11836
-2026,26.0,DET,11862
+2026,27.0,DET,11863
 1925,0.0,HOU,0
 1926,0.0,HOU,0
 1927,0.0,HOU,0
@@ -1120,7 +1120,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,111.0,HOU,6983
 2024,115.0,HOU,7098
 2025,115.0,HOU,7213
-2026,21.0,HOU,7234
+2026,22.0,HOU,7235
 1925,0.0,KC,0
 1926,0.0,KC,0
 1927,0.0,KC,0
@@ -1222,7 +1222,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,109.0,KC,6251
 2024,102.0,KC,6353
 2025,104.0,KC,6457
-2026,26.0,KC,6483
+2026,27.0,KC,6484
 1925,0.0,LAA,0
 1926,0.0,LAA,0
 1927,0.0,LAA,0
@@ -1324,7 +1324,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,113.0,LAA,7131
 2024,106.0,LAA,7237
 2025,101.0,LAA,7338
-2026,25.0,LAA,7363
+2026,26.0,LAA,7364
 1925,126.0,LAD,126
 1926,117.0,LAD,243
 1927,124.0,LAD,367
@@ -1426,7 +1426,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,114.0,LAD,11523
 2024,112.0,LAD,11635
 2025,101.0,LAD,11736
-2026,24.0,LAD,11760
+2026,25.0,LAD,11761
 1925,0.0,MIA,0
 1926,0.0,MIA,0
 1927,0.0,MIA,0
@@ -1630,7 +1630,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,106.0,MIL,6258
 2024,108.0,MIL,6366
 2025,114.0,MIL,6480
-2026,25.0,MIL,6505
+2026,26.0,MIL,6506
 1925,128.0,MIN,128
 1926,127.0,MIN,255
 1927,126.0,MIN,381
@@ -1732,7 +1732,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,111.0,MIN,11505
 2024,113.0,MIN,11618
 2025,107.0,MIN,11725
-2026,28.0,MIN,11753
+2026,29.0,MIN,11754
 1925,0.0,NYM,0
 1926,0.0,NYM,0
 1927,0.0,NYM,0
@@ -1834,7 +1834,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,114.0,NYM,6959
 2024,112.0,NYM,7071
 2025,108.0,NYM,7179
-2026,23.0,NYM,7202
+2026,24.0,NYM,7203
 1925,128.0,NYY,128
 1926,127.0,NYY,255
 1927,122.0,NYY,377
@@ -2038,7 +2038,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,104.0,OAK,11525
 2024,103.0,OAK,11628
 2025,104.0,OAK,11732
-2026,21.0,OAK,11753
+2026,22.0,OAK,11754
 1925,125.0,PHI,125
 1926,127.0,PHI,252
 1927,112.0,PHI,364
@@ -2140,7 +2140,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,112.0,PHI,11420
 2024,109.0,PHI,11529
 2025,110.0,PHI,11639
-2026,25.0,PHI,11664
+2026,26.0,PHI,11665
 1925,128.0,PIT,128
 1926,129.0,PIT,257
 1927,128.0,PIT,385
@@ -2242,7 +2242,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,106.0,PIT,11547
 2024,109.0,PIT,11656
 2025,101.0,PIT,11757
-2026,28.0,PIT,11785
+2026,29.0,PIT,11786
 1925,0.0,SD,0
 1926,0.0,SD,0
 1927,0.0,SD,0
@@ -2344,7 +2344,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,108.0,SD,6159
 2024,114.0,SD,6273
 2025,104.0,SD,6377
-2026,20.0,SD,6397
+2026,21.0,SD,6398
 1925,0.0,SEA,0
 1926,0.0,SEA,0
 1927,0.0,SEA,0
@@ -2446,7 +2446,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,106.0,SEA,5207
 2024,102.0,SEA,5309
 2025,109.0,SEA,5418
-2026,22.0,SEA,5440
+2026,23.0,SEA,5441
 1925,118.0,SF,118
 1926,120.0,SF,238
 1927,128.0,SF,366
@@ -2548,7 +2548,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,117.0,SF,11474
 2024,99.0,SF,11573
 2025,114.0,SF,11687
-2026,21.0,SF,11708
+2026,22.0,SF,11709
 1925,120.0,STL,120
 1926,126.0,STL,246
 1927,130.0,STL,376
@@ -2650,7 +2650,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,105.0,STL,11529
 2024,104.0,STL,11633
 2025,105.0,STL,11738
-2026,23.0,STL,11761
+2026,24.0,STL,11762
 1925,0.0,TB,0
 1926,0.0,TB,0
 1927,0.0,TB,0
@@ -2956,7 +2956,7 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,108.0,TOR,5250
 2024,108.0,TOR,5358
 2025,118.0,TOR,5476
-2026,25.0,TOR,5501
+2026,26.0,TOR,5502
 1925,0.0,WSN,0
 1926,0.0,WSN,0
 1927,0.0,WSN,0
@@ -3058,4 +3058,4 @@ year,unique_rhe_combos,franchise,cumulative_unique_rhe_combos
 2023,105.0,WSN,6161
 2024,107.0,WSN,6268
 2025,109.0,WSN,6377
-2026,26.0,WSN,6403
+2026,27.0,WSN,6404
