@@ -6,12 +6,13 @@ This folder contains a script that creates some fun visualizations of MLB team b
 
 This Github repo will update everyday (in theory) and show the latest results below:
 
-## Most Recent Scorigamis (Last Updated: 2026-07-01)
+## Most Recent Scorigamis (Last Updated: 2026-07-02)
 
 ![Master Scorigami](plots/master_scorigami_1925_2026.png)
 
 | Hits | Runs | Errors | First Appearance | Team | Total Games |
 |------|------|--------|------------------|------|-------------|
+| 17 | 23 | 0 | 2026-07-01 | CHN | 1 |
 | 24 | 23 | 1 | 2026-06-14 | COL | 1 |
 | 25 | 19 | 3 | 2026-05-31 | SFN | 1 |
 | 24 | 20 | 2 | 2025-08-06 | TOR | 1 |
@@ -21,7 +22,6 @@ This Github repo will update everyday (in theory) and show the latest results be
 | 28 | 25 | 0 | 2023-06-24 | ANA | 1 |
 | 27 | 20 | 0 | 2023-05-23 | TOR | 2 |
 | 12 | 16 | 2 | 2023-05-18 | SLN | 1 |
-| 11 | 17 | 0 | 2023-04-14 | NYN | 1 |
 
 ## Run
 
